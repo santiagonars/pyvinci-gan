@@ -177,7 +177,7 @@ if __name__ == '__main__':
                             transform=transform)
     
     dataset.discard_small(0.0, max_area= 1)
-    dataset.discard_bad_examples('bad_examples_list.txt')
+    # dataset.discard_bad_examples('bad_examples_list.txt')
     train_loader = DataLoader(dataset, batch_size=1, shuffle=False)   
     print('Number of samples: ', len(dataset))
 
