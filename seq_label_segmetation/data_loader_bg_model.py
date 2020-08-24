@@ -36,12 +36,10 @@ class CocoData(Dataset):
         self.transform = transform
         self.target_transform = target_transform
         self.final_img_size = final_img_size     
-        self.transform2 = transforms.Compose(
-            [
-                transforms.Resize((self.final_img_size,self.final_img_size)),
-                transforms.ToTensor(),
-            ]
-        )
+        self.transform2 = transforms.Compose([
+                                               transforms.Resize((final_img_size,final_img_size)),
+                                               transforms.ToTensor(),
+                                           ])
     
         
         if category_names == None:
@@ -76,7 +74,7 @@ class CocoData(Dataset):
         img_size = img.size
         img_size_x = img_size[0]
         img_size_y = img_size[1]
-        seg_masks = torch.zeros([len(self.category),3,self.final_img_size,self.final_img_size])
+        seg_masks = torch.zeros([len(self.category),1,self.final_img_size,self.final_img_size])
         instance_types = []
         
         for i in range(len(target)):    
@@ -91,7 +89,7 @@ class CocoData(Dataset):
             idx_list.remove(idx)
             instance = target[idx]
 
-            mask = Image.new('L', (img_size_x, img_size_y)) #Mode used to be "L"
+            mask = Image.new('L', (img_size_x, img_size_y))
             for j in range(len(instance['segmentation'])):
                 poly = instance['segmentation'][j]
                 ImageDraw.Draw(mask).polygon(poly, outline=1, fill=1)
@@ -171,8 +169,8 @@ class CocoData(Dataset):
 #                                     transforms.ToTensor(),
 #                                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
 #                                    ])    
-#     dataset = CocoData(root = 'coco/images/train2017',
-#                             annFile = 'coco/annotations/instances_train2017.json',
+#     dataset = CocoData(root = 'C:/Users/motur/coco/images/train2017',
+#                             annFile = 'C:/Users/motur/coco/annotations/instances_train2017.json',
 #                             category_names = ['elephant'],
 #                             transform=transform)
     
