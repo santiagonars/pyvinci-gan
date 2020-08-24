@@ -166,27 +166,27 @@ class CocoData(Dataset):
         print('Bad examples are left out!')
         
 #-------------------------Example-----------------------------------------
-if __name__ == '__main__':
-    transform = transforms.Compose([transforms.Resize((256,256)),
-                                    transforms.ToTensor(),
-                                    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
-                                   ])    
-    dataset = CocoData(root = 'coco/images/train2017',
-                            annFile = 'coco/annotations/instances_train2017.json',
-                            category_names = ['elephant'],
-                            transform=transform)
+# if __name__ == '__main__':
+#     transform = transforms.Compose([transforms.Resize((256,256)),
+#                                     transforms.ToTensor(),
+#                                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+#                                    ])    
+#     dataset = CocoData(root = 'coco/images/train2017',
+#                             annFile = 'coco/annotations/instances_train2017.json',
+#                             category_names = ['elephant'],
+#                             transform=transform)
     
-    dataset.discard_small(0.0, max_area= 1)
-    # dataset.discard_bad_examples('bad_examples_list.txt')
-    train_loader = DataLoader(dataset, batch_size=1, shuffle=False)   
-    print('Number of samples: ', len(dataset))
+#     dataset.discard_small(0.0, max_area= 1)
+#     dataset.discard_bad_examples('bad_examples_list.txt')
+#     train_loader = DataLoader(dataset, batch_size=1, shuffle=False)   
+#     print('Number of samples: ', len(dataset))
 
     
-    for num_iter, sample_batched in enumerate(train_loader,0):
-        img_id = sample_batched['id'][0]
-        image = dataset[num_iter]
-        image = image['img']
-        imshow(torchvision.utils.make_grid(image))
-        plt.pause(0.001)
+#     for num_iter, sample_batched in enumerate(train_loader,0):
+#         img_id = sample_batched['id'][0]
+#         image = dataset[num_iter]
+#         image = image['img']
+#         imshow(torchvision.utils.make_grid(image))
+#         plt.pause(0.001)
       
         
