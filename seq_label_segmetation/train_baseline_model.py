@@ -19,8 +19,8 @@ def main():
     parser.add_argument('--save_models', type=bool, default=True, help='Set True if you want to save trained models')
     parser.add_argument('--pre_trained_model_path', type=str, default=None, help='Pre-trained model path')
     parser.add_argument('--pre_trained_model_epoch', type=str, default=None, help='Pre-trained model epoch e.g 200')
-    parser.add_argument('--train_imgs_path', type=str, default='C:/Users/motur/coco/images/train2017', help='Path to training images')
-    parser.add_argument('--train_annotation_path', type=str, default='C:/Users/motur/coco/annotations/instances_train2017.json', help='Path to annotation file, .json file')
+    parser.add_argument('--train_imgs_path', type=str, default='coco/images/train2017', help='Path to training images')
+    parser.add_argument('--train_annotation_path', type=str, default='coco/annotations/instances_train2017.json', help='Path to annotation file, .json file')
     parser.add_argument('--category_names', type=str, default='giraffe,elephant,zebra,sheep,cow,bear',help='List of categories in MS-COCO dataset')
     parser.add_argument('--num_test_img', type=int, default=16,help='Number of images saved during training')
     parser.add_argument('--img_size', type=int, default=128,help='Generated image size')
@@ -54,8 +54,8 @@ def main():
     #Save the script
     copyfile(os.path.basename(__file__), root + result_folder_name + '/' + os.path.basename(__file__))
 
-    #Define transformation for dataset images - e.g scaling
-    transform = transforms.Compose([transforms.Scale((opt.img_size,opt.img_size)),
+    #Define transformation for dataset images - e.g resizing
+    transform = transforms.Compose([transforms.Resize((opt.img_size,opt.img_size)),
                                     transforms.ToTensor(),transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),]) 
     #Load dataset
     category_names = opt.category_names.split(',')

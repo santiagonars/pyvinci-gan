@@ -56,8 +56,8 @@ def main():
     #Save the script
     copyfile(os.path.basename(__file__), root + result_folder_name + '/' + os.path.basename(__file__))
     
-    #Define transformation for dataset images - e.g scaling
-    transform = transforms.Compose([transforms.Scale((opt.img_size,opt.img_size)),
+    #Define transformation for dataset images - e.g resizing
+    transform = transforms.Compose([transforms.Resize((opt.img_size,opt.img_size)),
                                     transforms.ToTensor(),transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),]) 
     #Load dataset
     category_names = opt.category_names.split(',')
