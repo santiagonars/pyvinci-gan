@@ -1,0 +1,1 @@
+In order to verify the performance of ControlGAN, please modify words describing visual attributes (e.g., colour or parts of a bird) in the corresponding text files shown in the example_filenames.txt
